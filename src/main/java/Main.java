@@ -9,7 +9,7 @@ public class Main {
         Race race = new Race();
         int carSpeed;
 
-        while(cars.size() < 3) {
+        while (cars.size() < 3) {
             System.out.println("Введите название машины под номером " + (cars.size() + 1) + ":");
             String carName = sc.next();
             System.out.println("Введите скорость машины под номером " + (cars.size() + 1) + ":");
