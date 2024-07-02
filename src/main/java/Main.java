@@ -7,23 +7,29 @@ public class Main {
         ArrayList<Car> cars = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         Race race = new Race();
-
-        String carName;
         int carSpeed;
 
-        while(cars.size() < 3) {
+        while (cars.size() < 3) {
             System.out.println("Введите название машины под номером " + (cars.size() + 1) + ":");
-            carName = sc.next();
+            String carName = sc.next();
             System.out.println("Введите скорость машины под номером " + (cars.size() + 1) + ":");
-            carSpeed = sc.nextInt();
-            if(carSpeed < 0 || carSpeed > 250) {
-                System.out.println("Введена некорректная скорость. Введите заново:");
-                carSpeed = sc.nextInt();
+            while (true) {
+                if (sc.hasNextInt()) {
+                    carSpeed = sc.nextInt();
+                    if (carSpeed >= 0 && carSpeed <= 250) {
+                        Car car = new Car(carName, carSpeed);
+                        cars.add(car);
+                        race.selectWinner(car);
+                    } else {
+                        System.out.println("Введена некорректная скорость. Введите заново: ");
+                        continue;
+                    }
+                    break;
+                } else {
+                    System.out.println("Введена некорректная скорость. Введите заново: ");
+                    sc.next();
+                }
             }
-
-            Car car = new Car(carName, carSpeed);
-            cars.add(car);
-            race.selectWinner(car);
         }
 
         System.out.println("Участники гонки:");
