@@ -8,15 +8,18 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         Race race = new Race();
         int carSpeed;
+        int minCarSpeed = 0;
+        int maxCarSpeed = 250;
+        int countCar = 3;
 
-        while (cars.size() < 3) {
+        while (cars.size() < countCar) {
             System.out.println("Введите название машины под номером " + (cars.size() + 1) + ":");
             String carName = sc.next();
             System.out.println("Введите скорость машины под номером " + (cars.size() + 1) + ":");
             while (true) {
                 if (sc.hasNextInt()) {
                     carSpeed = sc.nextInt();
-                    if (carSpeed >= 0 && carSpeed <= 250) {
+                    if (carSpeed >= minCarSpeed && carSpeed <= maxCarSpeed) {
                         Car car = new Car(carName, carSpeed);
                         cars.add(car);
                         race.selectWinner(car);
